@@ -5,25 +5,33 @@ import check from '../assets/icon-check.svg';
 import { LinearGradient } from "expo-linear-gradient";
 import { Animated } from "react-native";
 
-const Task = ({index}) => {
+const Task = ({index,task,deleteTasks,updateTask}) => {
+
     return (
         <View style={styles.container}>
             <View style={index === 1 ? styles.tasksTop : styles.tasksBox}>
                 <View>
-                {/* <View style={styles.circle}></View> */}
-            <AnimatedLinearGradient
-            start={[0, 0]} end={[1, 1]}   location={[0.25, 0.4, 1]}
-            colors={[" hsl(192, 100%, 67%)", "hsl(280, 87%, 65%)"]}
-            style={styles.circleCheck}>
+            {
+                task.completed ?  
+                <AnimatedLinearGradient
+                start={[0, 0]} end={[1, 1]}   location={[0.25, 0.4, 1]}
+                colors={[" hsl(192, 100%, 67%)", "hsl(280, 87%, 65%)"]}
+                style={styles.circleCheck}>
+                <Image source={check} style={{width: '10px', height: '10px'}}/>
+                </AnimatedLinearGradient> 
+                : 
+             <Text style={styles.circle} onPress={()=>{updateTask(task.id)}}>
+                   
+             </Text>
 
-            <Image source={check} style={{width: '10px', height: '10px'}}/>
-            </AnimatedLinearGradient>
+            }           
         
                 </View>
                 <View style={styles.taskCross}>
-                <Text  style={styles.tasksCrossed}>Task Name</Text>
-        
-             <Image source={cross} style={{width:'15px',  height:'15px'}}/>
+                <Text  style={task.completed ? styles.tasksCrossed:  styles.tasks}>{task.taskName}</Text>
+             <Text onPress={()=>{deleteTasks(task.id)}}>
+                <Image  source={cross} style={{width:'15px',  height:'15px'}}/>
+             </Text>
 
                 </View>
             </View>

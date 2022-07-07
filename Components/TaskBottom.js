@@ -1,12 +1,18 @@
 import React from 'react';
 import {View, StyleSheet, TextInput, Text} from 'react-native';
 
-const TaskBottom = () => {
+const TaskBottom = ({tasks,setTasks}) => {
+    const clearTasks = () => {
+        const updatedTasks = tasks.filter(task => !task.completed );
+        setTasks(updatedTasks);
+    }
     return (
         <View style={styles.container}>
             <View style={styles.inputBox}>
-                <Text style={styles.text}>5 items left</Text>
-                 <Text style={styles.text}>Clear Completed</Text>
+                <Text style={styles.text}>{
+                    tasks.filter(task => !task.completed).length
+                } tasks left</Text>
+                 <Text style={styles.text} onPress={clearTasks}>Clear Completed</Text>
             </View>
         </View>
     );
