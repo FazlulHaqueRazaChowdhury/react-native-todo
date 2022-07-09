@@ -5,11 +5,11 @@ import check from '../assets/icon-check.svg';
 import { LinearGradient } from "expo-linear-gradient";
 import { Animated } from "react-native";
 
-const Task = ({index,task,deleteTasks,updateTask}) => {
+const Task = ({index,task,deleteTasks,updateTask,darkMode}) => {
 
     return (
         <View style={styles.container}>
-            <View style={index === 1 ? styles.tasksTop : styles.tasksBox}>
+            <View style={index === 1 ? darkMode ?  styles.tasksTop : styles.tasksTopLight : darkMode ?  styles.tasksBox : styles.tasksBoxLight}>
                 <View>
             {
                 task.completed ?  
@@ -28,7 +28,7 @@ const Task = ({index,task,deleteTasks,updateTask}) => {
         
                 </View>
                 <View style={styles.taskCross}>
-                <Text  style={task.completed ? styles.tasksCrossed:  styles.tasks}>{task.taskName}</Text>
+                <Text  style={task.completed ? styles.tasksCrossed: darkMode ?   styles.tasks : styles.tasksLight}>{task.taskName}</Text>
              <Text onPress={()=>{deleteTasks(task.id)}}>
                 <Image  source={cross} style={{width:'15px',  height:'15px'}}/>
              </Text>
@@ -52,8 +52,32 @@ const styles = StyleSheet.create({
         borderBottomWidth: '1px',
         borderBottomColor: 'hsl(233, 14%, 35%)',
     },
+    tasksBoxLight:{
+        backgroundColor: 'hsl(236, 33%, 92%)',
+        paddingVertical: '15px',
+        paddingHorizontal: '15px',
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent:'flex-start',
+        alignItems: 'center',
+        borderBottomWidth: '1px',
+        borderBottomColor: 'hsl(233, 14%, 35%)',
+    },
     tasksTop:{
         backgroundColor: 'hsl(235, 24%, 19%)',
+        paddingVertical: '15px',
+        paddingHorizontal: '15px',
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent:'flex-start',
+        alignItems: 'center',
+        borderBottomWidth: '1px',
+        borderBottomColor: 'hsl(233, 14%, 35%)',
+        borderTopStartRadius: '5px',
+        borderTopEndRadius: '5px'
+    },
+    tasksTopLight:{
+        backgroundColor: 'hsl(236, 33%, 92%)',
         paddingVertical: '15px',
         paddingHorizontal: '15px',
         flex: 1,
@@ -92,6 +116,14 @@ const styles = StyleSheet.create({
         flex: 1,
         width: '100%',
         color: 'hsl(234, 39%, 85%)',
+        borderWidth: 0,
+        marginLeft: '7px'
+
+    },
+    tasksLight: {
+        flex: 1,
+        width: '100%',
+        color: 'black',
         borderWidth: 0,
         marginLeft: '7px'
 

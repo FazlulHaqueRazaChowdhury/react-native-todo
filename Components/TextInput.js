@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {View, StyleSheet, TextInput, Button, Text} from 'react-native';
 
-const Textinput = ({tasks,setTasks}) => {
+const Textinput = ({tasks,setTasks,darkMode}) => {
     const [show,setShow] = useState(false);
     const [text,setText] = useState('');
     const showButton = (e) =>{
@@ -22,7 +22,7 @@ const Textinput = ({tasks,setTasks}) => {
     }
     return (
         <View style={styles.container}>
-            <View style={styles.inputBox}>
+            <View style={darkMode ? styles.inputBox : styles.inputBoxLight}>
                 <View style={styles.circle}></View>
                  <TextInput onChange={showButton} underlineColorAndroid ='transparent' style={styles.input} placeholder='Create a new todo...'/>
                 {
@@ -42,6 +42,18 @@ const styles = StyleSheet.create({
     },
     inputBox:{
         backgroundColor: 'hsl(235, 24%, 19%)',
+        paddingVertical: '15px',
+        paddingHorizontal: '15px',
+        maxHeight: '50px',
+        borderRadius: '5px',
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent:'flex-start',
+        alignItems: 'center',
+        overflow: 'hidden'
+    },
+    inputBoxLight:{
+        backgroundColor: 'hsl(236, 33%, 92%)',
         paddingVertical: '15px',
         paddingHorizontal: '15px',
         maxHeight: '50px',

@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import image from '../assets/bg-mobile-dark.jpg';
+import image2 from '../assets/bg-mobile-light.jpg';
 import {View, StyleSheet, ImageBackground} from 'react-native';
 import Header from './Header';
 import Textinput from './TextInput';
 import Tasks from './Tasks';
 
-const Home = () => {
+const Home = ({darkMode,setDark}) => {
+
     const [tasks,setTasks] = useState([
         {
             id: 0,
@@ -36,11 +38,11 @@ const Home = () => {
     return (
         <View>
                 <View>
-                <ImageBackground source={image} style={styles.backgroundImage}>
-                <Header/>
-                <Textinput tasks={tasks} setTasks={setTasks}/>
+                <ImageBackground   source={darkMode ? image : image2} style={styles.backgroundImage}>
+                <Header darkMode={darkMode} setDark={setDark}/>
+                <Textinput darkMode={darkMode}  tasks={tasks} setTasks={setTasks}/>
                 </ImageBackground>
-                <Tasks setTasks={setTasks} tasks={tasks}/>
+                <Tasks darkMode={darkMode} setTasks={setTasks} tasks={tasks}/>
                 </View>           
         </View>
     );

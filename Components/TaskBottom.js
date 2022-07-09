@@ -1,14 +1,14 @@
 import React from 'react';
 import {View, StyleSheet, TextInput, Text} from 'react-native';
 
-const TaskBottom = ({tasks,setTasks}) => {
+const TaskBottom = ({darkMode,tasks,setTasks}) => {
     const clearTasks = () => {
         const updatedTasks = tasks.filter(task => !task.completed );
         setTasks(updatedTasks);
     }
     return (
         <View style={styles.container}>
-            <View style={styles.inputBox}>
+            <View style={darkMode ? styles.inputBox : styles.inputBoxLight}>
                 <Text style={styles.text}>{
                     tasks.filter(task => !task.completed).length
                 } tasks left</Text>
@@ -21,6 +21,18 @@ const TaskBottom = ({tasks,setTasks}) => {
 const styles = StyleSheet.create({
     inputBox:{
         backgroundColor: 'hsl(235, 24%, 19%)',
+        paddingVertical: '15px',
+        paddingHorizontal: '15px',
+        borderBottomRightRadius: '5px',
+        borderBottomLeftRadius: '5px',
+        flex: 1,
+        flexDirection: 'row',
+        width : '100%',
+        justifyContent:'space-between',
+        alignItems: 'center',
+    },
+    inputBoxLight:{
+        backgroundColor: 'hsl(236, 33%, 92%)',
         paddingVertical: '15px',
         paddingHorizontal: '15px',
         borderBottomRightRadius: '5px',

@@ -1,12 +1,17 @@
 import React from 'react';
 import {View, StyleSheet, Image,Text} from 'react-native';
 import image from '../assets/icon-sun.svg';
-const Header = () => {
+import image2 from '../assets/icon-moon.svg';
+const Header = ({darkMode,setDark}) => {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
             <Text style={styles.title}>TODO</Text>
-            <Image source={image} style={styles.image}/>
+            <Text onPress={()=>{
+                setDark(!darkMode)
+            }}>
+            <Image  source={darkMode ? image : image2 } style={styles.image}/>
+            </Text>
         </View>
         </View>
     );
